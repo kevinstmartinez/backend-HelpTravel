@@ -1,0 +1,53 @@
+
+[
+    {
+      "box": "XS",
+      "min_weight": 0,
+      "max_weight": 5,
+      "height": 30,
+      "width": 40,
+      "length": 21
+    },
+  
+    {
+      "box": "S",
+      "min_weight": 6,
+      "max_weight": 10,
+      "height": 40,
+      "width": 40,
+      "length": 32
+    },
+  
+    {
+      "box": "M",
+      "min_weight": 11,
+      "max_weight": 15,
+      "height": 40,
+      "width": 50,
+      "length": 38
+  
+  
+    },
+  
+    {
+      "box": "L",
+      "min_weight": 16,
+      "max_weight": 20,
+      "height": 50,
+      "width": 50,
+      "length": 40
+  
+  
+    },
+  
+    {
+      "box": "XL",
+      "min_weight": 21,
+      "max_weight": 50,
+      "height": 80,
+      "width": 80,
+      "length": 40
+    }
+  
+  ]
+  

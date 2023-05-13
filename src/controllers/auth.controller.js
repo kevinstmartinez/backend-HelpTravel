@@ -58,6 +58,8 @@ export const loguearse = async (req, res) => {
 
         const [rows] = await pool.query('Select * from Usuarios Inner join roles On Usuarios.id_rol = roles.id_roles WHERE Usuarios.id_user = ?', [id])// consulte los elementos que tiene en relacion con otras tablas usando el ID 
 
+        console.log(rows[0].name_rol);// prueba para sacar el String del rol asociado al ud del usuario
+
         const pass = await comparePassword(password, rows[0].password)// compara las password da la DB con las q ingreso y return un boolean
 
         //let message = 'ERROR CLAVE INCORRECTA'
