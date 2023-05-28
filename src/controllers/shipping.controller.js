@@ -2,10 +2,11 @@ import { pool } from '../db/database.js'
 import jwt from 'jsonwebtoken'
 import jwt_decode from 'jwt-decode'
 import { randomUUID } from 'crypto'
-import boxes from '../public/boxes.json' assert { type: "json" }
 import fetch from "node-fetch"
 import { SESSION_TRACKER, APIKEY } from '../config.js'
-import { json } from 'express'
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const boxes = require('../public/boxes.json')
 
 export const regularExpression = (data) => {
   let regex = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;

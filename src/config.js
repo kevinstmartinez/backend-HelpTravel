@@ -7,7 +7,7 @@ export default{
 
 config()
 
-export const PORT_SERVIDORS = process.env.PORT_SERVIDORS || 8080
+export const PORT_SERVIDORS = process.env.PORT || 8080
 
 export const HOST = process.env.HOST || 'localhost'
 export const USER_DATABASE = process.env.USER_DATABASE || 'root'

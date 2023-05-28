@@ -1,6 +1,7 @@
 import fetch from "node-fetch"
-import ciudades from "../public/ciudades.json" assert { type: "json" }
-
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const ciudades = require('../public/ciudades.json')
 export const departamentosCO = async (req, res) => {
     res.json(ciudades);
   /*try {
