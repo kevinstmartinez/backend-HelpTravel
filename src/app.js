@@ -1,17 +1,17 @@
-import express from "express";
-import userRouters from './routes/user.routes';
-import authRouters from './routes/auth.routes';
-import producRouters from './routes/produc.routes';
-import shippingRouters from './routes/shipping.routes';
-import paymentRouters from './routes/payment.routes';
-import locationRouters from './routes/location.routes';
+import express  from "express";
+import userRouters from './routes/user.routes.js';
+import authRouters from './routes/auth.routes.js';
+import producRouters from './routes/produc.routes.js';
+import shippingRouters from './routes/shipping.routes.js';
+import paymentRouters from './routes/payment.routes.js';
+import locationRouters from './routes/location.routes.js';
 import morgan from 'morgan';
 import cors from 'cors';
 
 const app = express() // crear un servidor
 
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: 'http://localhost:3000',
     optionsSuccessStatus: 200
 }))
 
@@ -27,4 +27,4 @@ app.use('/api',shippingRouters);
 app.use('/api',paymentRouters);
 app.use('/api',locationRouters);
 
-export default app;
+export default app

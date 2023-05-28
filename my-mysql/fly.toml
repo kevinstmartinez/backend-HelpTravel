@@ -1,0 +1,24 @@
+# fly.toml app configuration file generated for database-helptravel on 2023-05-27T00:57:08-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "database-helptravel"
+primary_region = "bog"
+
+[processes]
+app = "--datadir /data/mysql --default-authentication-plugin mysql_native_password --performance-schema=OFF --innodb-buffer-pool-size 64M"
+
+[mounts]
+  source="mysqldata"
+  destination="/data"
+
+[env]
+  MYSQL_DATABASE = "helpTravel_02"
+  MYSQL_USER = "lopez"
+
+# As of 04/25/2023:
+# MySQL 8.0.33 has a bug in it
+# so avoid that specific version
+[build]
+  image = "mysql:8.0.32"

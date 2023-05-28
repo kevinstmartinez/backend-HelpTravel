@@ -1,9 +1,8 @@
 import { pool } from '../db/database.js'
-import { encryptPassword, comparePassword } from '../libs/encrypt.js'
 import jwt from 'jsonwebtoken'
 import jwt_decode from 'jwt-decode'
 import { randomUUID } from 'crypto'
-import boxes from '../public/boxes.json'
+import boxes from '../public/boxes.json' assert { type: "json" }
 import fetch from "node-fetch"
 import { SESSION_TRACKER, APIKEY } from '../config.js'
 import { json } from 'express'
@@ -189,5 +188,45 @@ export const generateQuote = async (req, res) => {
   }
 
 
+}
+export const addShipping = async (req, res) => {
+  
+  const {origin, destinoCiudad, destinoDir, precioTotal, diasHabiles, 
+         companyName, num_guia} = req.body
+  
+  try {
+
+    const token = req.headers.authorization.split(' ')[1]
+    const decoded = jwt_decode(token)
+
+    const [user] = await pool.query('SELECT * FROM Usuarios WHERE id_user = ?', [decoded.id])
+
+    const [empl] = await pool.query('SELECT * FROM empleados')
+
+    const newShipping = {
+      id_envio: randomUUID(),
+      tipo_servicio: 'Envio', 
+      origin, 
+      destinoCiudad, 
+      destinoDir, 
+      precioTotal,
+      status_paquete: false, 
+      create_at: new Date(), 
+      diasHabiles, 
+      id_usuario: user[0].id_user, 
+      id_empleado: empl[0].id, 
+      companyName, 
+      num_guia
+    }
+
+    await pool.query('INSERT INTO envio SET ?', [newShipping])
+
+    return res.status(200).json({
+      message: 'Item Added Successfully'
+    })
+
+  } catch (error) {
+    console.log(error);
+  }
 }
 //module.exports = { generateQuote }
