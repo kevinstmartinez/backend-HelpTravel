@@ -55,7 +55,7 @@ export const getShippingCart = async (req, res) => {
       totalQuantity += i.quantity
     }
 
-    const shippingBox = boxes.filter(box => box.min_weight < totalWeight && totalWeight <= box.max_weight)
+    const shippingBox = boxes.filter(box => box.min_weight <= totalWeight && totalWeight <= box.max_weight)
 
 
     return res.status(200).json({
